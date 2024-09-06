@@ -1,4 +1,4 @@
-#!/home/mateus/Documents/projects/AudioChatPy/.venv/bin/python3
+#!/home/mateus/Documents/projects/py-audio-chat/src/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
