@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="UserService">
+    <output-path>$PROJECT_DIR$/UserService/out/artifacts/UserService</output-path>
+    <root id="root">
+      <element id="dir-copy" path="$PROJECT_DIR$/UserService/src/main/resources/META-INF" />
+      <element id="file-copy" path="$PROJECT_DIR$/UserService/src/main/resources/META-INF/beans.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/UserService/src/main/resources/META-INF/persistence.xml" />
+    </root>
+  </artifact>
+</component>

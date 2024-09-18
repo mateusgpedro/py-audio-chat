@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  user-service:
+    #image: quay.io/wildfly/wildfly:latest-jdk21
+    build:
+      dockerfile: Dev.Dockerfile
+      context: ./UserService
+    container_name: user-service
+    ports:
+      - "8081:8080"
+      - "5005:5005"
+    volumes:
+      - ./UserService/target/voice-chat.war:/opt/jboss/wildfly/standalone/deployments/voice-chat.war
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+  authentication-service:
+    build:
+      dockerfile: Dev.Dockerfile
+      context: ./AuthenticationService
+    container_name: authentication-service
+    ports:
+      - "8082:8080"
+      - "5006:5006"
+    volumes:
+      - ./AuthenticationService/target/voice-chat.war:/opt/jboss/wildfly/standalone/deployments/voice-chat.war
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5006
+  signaling-service:
+    build:
+      dockerfile: Dev.Dockerfile
+      context: ./AuthenticationService
+    container_name: signaling-service
+    ports:
+      - "8083:8080"
+      - "5007:5007"
+    volumes:
+      - ./SignalingService/target/voice-chat.war:/opt/jboss/wildfly/standalone/deployments/voice-chat.war
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5007
+  hub-service:
+    build:
+      dockerfile: Dev.Dockerfile
+      context: ./HubService
+    container_name: hub-service
+    ports:
+      - "8083:8080"
+      - "5008:5008"
+    volumes:
+      - ./HubService/target/voice-chat.war:/opt/jboss/wildfly/standalone/deployments/voice-chat.war
+    environment:
+      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5007
